@@ -1,8 +1,8 @@
-resource "aws_autoscaling_policy" "web_asg_scaleup" {
+resource "aws_autoscaling_policy" "web_asg_scaleup40" {
   name                   = replace(local.name, "rtype", "CPU_Utilization40")
   scaling_adjustment     = 1
   adjustment_type        = "ChangeInCapacity"
-  cooldown               = 300
+  cooldown               = 120
   autoscaling_group_name = aws_autoscaling_group.web.name
 }
 
@@ -22,7 +22,15 @@ resource "aws_cloudwatch_metric_alarm" "web_cpu_alarm40" {
     AutoScalingGroupName = aws_autoscaling_group.web.name
   }
 
-  alarm_actions = [aws_autoscaling_policy.web_asg_scaleup.arn]
+  alarm_actions = [aws_autoscaling_policy.web_asg_scaleup40.arn]
+}
+
+resource "aws_autoscaling_policy" "web_asg_scaleup60" {
+  name                   = replace(local.name, "rtype", "CPU_Utilization60")
+  scaling_adjustment     = 1
+  adjustment_type        = "ChangeInCapacity"
+  cooldown               = 120
+  autoscaling_group_name = aws_autoscaling_group.web.name
 }
 
 resource "aws_cloudwatch_metric_alarm" "web_cpu_alarm60" {
@@ -41,7 +49,7 @@ resource "aws_cloudwatch_metric_alarm" "web_cpu_alarm60" {
     AutoScalingGroupName = aws_autoscaling_group.web.name
   }
 
-  alarm_actions = [aws_autoscaling_policy.web_asg_scaleup.arn]
+  alarm_actions = [aws_autoscaling_policy.web_asg_scaleup60.arn]
 }
 
 
