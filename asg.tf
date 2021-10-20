@@ -80,3 +80,8 @@ resource "aws_autoscaling_group" "web" {
     }
   }
 }
+
+resource "aws_autoscaling_attachment" "web_asg_attachment_bar" {
+  autoscaling_group_name = aws_autoscaling_group.web.id
+  alb_target_group_arn   = aws_lb_target_group.main.arn
+}
