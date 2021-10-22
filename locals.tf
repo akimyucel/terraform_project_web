@@ -1,7 +1,8 @@
 locals {
   project  = "web"
   app_port = 80
-  domain   = "${local.project}.${var.base_domain}"
+  ssl_port = 443
+  domain   = "${local.project}.${var.domain_name}"
   tags = {
     Project   = title(local.project)
     Team      = "DevOps"

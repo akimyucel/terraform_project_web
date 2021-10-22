@@ -79,6 +79,11 @@ resource "aws_autoscaling_group" "web" {
       propagate_at_launch = true
     }
   }
+
+  lifecycle {
+    ignore_changes = [load_balancers, target_group_arns]
+  }
+
 }
 
 resource "aws_autoscaling_attachment" "web_asg_attachment_bar" {

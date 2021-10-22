@@ -1,8 +1,3 @@
-variable "base_domain" {
-  type    = string
-  default = "akimyucel.com"
-}
-
 variable "env" {
   type    = string
   default = "dev"
@@ -36,4 +31,20 @@ variable "asg_max" {
 variable "asg_desired" {
   type    = number
   default = 3
+}
+
+variable "domain_name" {
+  type    = string
+  default = "akimyucel.com"
+}
+
+variable "validation_method" {
+  type    = string
+  default = "DNS"
+}
+
+variable "zone_id" {
+  type        = string
+  default     = "Z08009452KUYHIZZICIT2"
+  description = "The ID of the hosted zone to contain this record."
 }
